@@ -1,0 +1,12 @@
+{
+  "ID": "77d4deea-f7ca-4576-ad42-691dd36562c8",
+  "ActionKeyword": "yasb",
+  "Name": "YFlow",
+  "Description": "Control YASB status bar from Flow.Launcher",
+  "Author": "AmN",
+  "Version": "0.0.1",
+  "Language": "javascript",
+  "Website": "https://github.com/amnweb/yflow",
+  "ExecuteFileName": "main.js",
+  "IcoPath": "images\\icon.png"
+}

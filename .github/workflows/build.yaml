@@ -1,0 +1,51 @@
+name: Build and Release
+
+permissions:
+  contents: write
+  
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugin.json'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Get version
+        id: get_version
+        run: |
+          VERSION=$(grep -o '"Version": "[^"]*"' plugin.json | cut -d'"' -f4)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          
+      - name: Create ZIP archive
+        run: |
+          # Create temporary directory
+          mkdir -p temp/YFlow
+          
+          # Copy files to the temp directory (excluding .git and .github)
+          rsync -av --exclude=".git" --exclude=".github" --exclude="temp" . temp/YFlow/
+          
+          # Create the ZIP from the temp directory
+          cd temp
+          zip -r ../YFlow-v${{ steps.get_version.outputs.version }}.zip ./YFlow
+          cd ..
+          
+          # Clean up
+          rm -rf temp
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: Release v${{ steps.get_version.outputs.version }}
+          files: YFlow-v${{ steps.get_version.outputs.version }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
