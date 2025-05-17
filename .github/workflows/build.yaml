@@ -4,10 +4,6 @@ permissions:
   contents: write
   
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'plugin.json'
   workflow_dispatch:
 
 jobs:
