@@ -15,6 +15,18 @@ if (method === "query") {
         {
             command: "reload",
             description: "Reload YASB status bar"
+        },
+        {
+            command: "show-bar",
+            description: "Show YASB status bar"
+        },
+        {
+            command: "hide-bar",
+            description: "Hide YASB status bar"
+        },
+        {
+            command: "toggle-bar",
+            description: "Toggle YASB status bar"
         }
     ];
 

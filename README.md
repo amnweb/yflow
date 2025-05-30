@@ -15,6 +15,9 @@ Type `yasb` in Flow Launcher followed by one of these commands:
 - `start` - Start the YASB status bar
 - `stop` - Stop the YASB status bar
 - `reload` - Reload the YASB status bar
+- 'show-bar' - Show the YASB status bar
+- `hide-bar` - Hide the YASB status bar
+- `toggle-bar` - Toggle the visibility of the YASB status bar
 
 ## Requirements
 
